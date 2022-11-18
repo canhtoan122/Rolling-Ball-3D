@@ -28,4 +28,25 @@ public class MainMenu : MonoBehaviour {
 		// de direccion para mover la pelota se baja/sube el volumen
 		EventSystem.current.SetSelectedGameObject(null);
 	}
+
+	public GameObject startButton;
+	public GameObject exitButton;
+	public GameObject level1Button;
+	public GameObject level2Button;
+	public GameObject summaryLevelButton;
+	public GameObject logoutButton;
+	public void StartNewLevel()
+    {
+		startButton.SetActive(false);
+		exitButton.SetActive(false);
+		logoutButton.SetActive(false);
+		level1Button.SetActive(true);
+		level2Button.SetActive(true);
+		summaryLevelButton.SetActive(true);
+
+	}
+	public void LogOut()
+    {
+		Application.LoadLevel("Account");
+	}
 }

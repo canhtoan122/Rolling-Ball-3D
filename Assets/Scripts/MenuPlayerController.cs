@@ -32,22 +32,30 @@ public class MenuPlayerController : MonoBehaviour {
 		rb.AddForce (movement * speed);
 	}
 
-	void OnTriggerEnter(Collider info) {
+	void OnTriggerEnter(Collider info)
+	{
 
-		if (info.gameObject.CompareTag ("Pick Up")) {
+		if (info.gameObject.CompareTag("Pick Up"))
+		{
 
-			GameObject effect = (GameObject) Instantiate (pickUpEffect,info.transform.position,info.transform.rotation);
-			Destroy(effect,3);
-			info.gameObject.SetActive (false); // Or Destroy(info.gameObject);
+			GameObject effect = (GameObject)Instantiate(pickUpEffect, info.transform.position, info.transform.rotation);
+			Destroy(effect, 3);
+			info.gameObject.SetActive(false); // Or Destroy(info.gameObject);
 		}
 		else
-			if (info.gameObject.CompareTag ("Bad Pick Up")) {
-			
-				GameObject effect = (GameObject) Instantiate (badPickUpEffect,info.transform.position,info.transform.rotation);
-				Destroy(effect,2);
-				info.gameObject.SetActive (false);
-			}
-	}
+			if (info.gameObject.CompareTag("Bad Pick Up"))
+		{
+
+			GameObject effect = (GameObject)Instantiate(badPickUpEffect, info.transform.position, info.transform.rotation);
+			Destroy(effect, 2);
+			info.gameObject.SetActive(false);
+		}
+        if (info.gameObject.CompareTag("web"))
+        {
+            Application.LoadLevel("Summary");
+        }
+
+    }
 
 	void OnCollisionEnter(Collision collision) {
 

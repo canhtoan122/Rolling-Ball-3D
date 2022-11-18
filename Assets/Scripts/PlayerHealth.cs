@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour {
 	
 	public GameObject badPickUpEffect;
 	public Text gameoverText;
+	public GameObject gameoverPanel;
 
 	// Aca para ejecutar un metodo de otro script (2da respuesta): http://answers.unity3d.com/questions/1083124/two-stupid-questions-about-calling-a-method-from-a.html
 	// Lo use para ejecutar la corutina que reinicia el nivel luego de unos segundos (ResetGame()), tambien cuando se detecta que se gana el juego desde este script
@@ -25,6 +26,8 @@ public class PlayerHealth : MonoBehaviour {
 			gameoverText.text = "GAME OVER";
 			gameManager.gameOver.Play();
 			GameManager.endGame = true;
+			gameoverPanel.SetActive(true);
+			Time.timeScale = 0f;
 			//gameManager.LoadNextLevel(GameManager.currentLevel,gameManager.gameOver.clip.length+0.5f);
 
 			// StartCoroutine(gameManager.CoResetGame()) // Esto tambien funciona...

@@ -1,11 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
 	public AudioSource gameOver;
 
 	public Transform musicManagerPrefab;
+
+	public Text hpText;
+	public Text scoreText;
 
 	public static int currentScore = 0;
 	public static int lifes = 3;
@@ -47,6 +51,8 @@ public class GameManager : MonoBehaviour {
 		testFinalScore = finalScore;
 		testKilledEnemys = killedEnemys;
 		testBadPickups = badPickups;
+		hpText.text = lifes.ToString();
+		scoreText.text = currentScore.ToString();
 	}
 
 	// Creamos esta funcion auxiliar para que pueda ser invocada por el script de PlayerHealth
@@ -77,4 +83,6 @@ public class GameManager : MonoBehaviour {
 		Application.LoadLevel("Level_1");
 		Time.timeScale = 1f;
 	}
+
+
 }
