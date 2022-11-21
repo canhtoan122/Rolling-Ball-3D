@@ -77,6 +77,11 @@ public class PlayerController : MonoBehaviour {
 			GameManager.currentScore += 1;
 			SetCountText();
 		}
+		if(info.tag == "web")
+        {
+			Destroy(gameObject);
+			Application.LoadLevel("Summary");
+        }
 	}
 
 	void SetCountText() {
