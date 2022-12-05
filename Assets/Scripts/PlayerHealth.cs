@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour {
 
 		if ((GameManager.lifes == 0) && (!GameManager.endGame)) {
 			gameoverText.text = "GAME OVER";
-			gameManager.gameOver.Play();
+			//gameManager.gameOver.Play();
 			GameManager.endGame = true;
 			gameoverPanel.SetActive(true);
 			Time.timeScale = 0f;

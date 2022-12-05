@@ -18,7 +18,7 @@ public class Destructible : MonoBehaviour {
 		//player.gameObject.SetActive (false);
 		//pieces.gameObject.SetActive (true);
 		gameoverText.text = "GAME OVER";
-		gameManager.gameOver.Play();
+		//gameManager.gameOver.Play();
 		GameManager.endGame = true;
 		Time.timeScale = 0f;
 

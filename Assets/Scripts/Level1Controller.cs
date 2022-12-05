@@ -35,4 +35,8 @@ public class Level1Controller : MonoBehaviour
         Application.LoadLevel("Level_2");
         Time.timeScale = 1f;
     }
+    public void backtoMenu()
+    {
+        Application.LoadLevel("Menu");
+    }
 }

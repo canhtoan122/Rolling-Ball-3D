@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	public AudioSource gameOver;
+	//public AudioSource gameOver;
 
-	public Transform musicManagerPrefab;
+	//public Transform musicManagerPrefab;
 
 	//public Text hpText;
 	//public Text scoreText;
@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour {
 		currentLevel = Application.loadedLevel;
 
 		if (!GameObject.FindGameObjectWithTag ("Music Manager")) {
-			Object musicManager = Instantiate(musicManagerPrefab, musicManagerPrefab.position, musicManagerPrefab.rotation);
-			musicManager.name = musicManagerPrefab.name;
-			DontDestroyOnLoad(musicManager);
+			//Object musicManager = Instantiate(musicManagerPrefab, musicManagerPrefab.position, musicManagerPrefab.rotation);
+			//musicManager.name = musicManagerPrefab.name;
+			//DontDestroyOnLoad(musicManager);
 		}
 	}
 
