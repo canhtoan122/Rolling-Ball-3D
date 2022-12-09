@@ -13,7 +13,7 @@ public class LoginPageController : MonoBehaviour
     public Text usernameErrorText;
     public Text passwordErrorText;
 
-    private string username;
+    public static string username;
     private string password;
 
     private string connectionString;
@@ -51,7 +51,6 @@ public class LoginPageController : MonoBehaviour
             connection.Close();
         }
 
-
         //String checkUsernameStr = "select Username from AccountInfo where Username = '" + username + "';";
         //cmd = new SqlCommand(checkUsernameStr, connection);
         //string id = "select Id from AccountInfo where Username = '" + username + "';";
@@ -80,5 +79,6 @@ public class LoginPageController : MonoBehaviour
         //    usernameErrorText.gameObject.SetActive(true);
         //    connection.Close();
         //}
-    }           
+
+    }
 }

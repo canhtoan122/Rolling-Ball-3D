@@ -5,9 +5,9 @@ using UnityEngine.EventSystems;
 public class MainMenu : MonoBehaviour {
 
 	public void QuitGame () {
-	
-		Debug.Log ("Exiting game...");
-		Application.Quit ();
+
+
+		Application.LoadLevel("Summary");
 	}
 	
 	public void LoadLevel (string level) {
@@ -49,4 +49,8 @@ public class MainMenu : MonoBehaviour {
     {
 		Application.LoadLevel("Account");
 	}
+	public void decore()
+    {
+		Application.LoadLevel("display screen");
+    }
 }

@@ -14,10 +14,10 @@ public class PlayerHealth : MonoBehaviour {
 	// esta variable era algo de tipo PlayerHealth y se instanciaba como gameObject.GetComponent<PlayerHealth>()
 	public GameManager gameManager;
 
-	void Start() {
+	//void Start() {
 
-		gameoverText.text = "";
-	}
+	//	gameoverText.text = "";
+	//}
 
 	// Update is called once per frame
 	void Update () {

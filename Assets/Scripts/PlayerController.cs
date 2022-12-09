@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -24,11 +25,14 @@ public class PlayerController : MonoBehaviour {
 	private bool isFalling;
 	private float distToGround;
 
+	public Level1Controller level1;
+	public Level2Controller level2;
+
 	void Start() {
 
 		rb = GetComponent<Rigidbody> ();
 		speed = 10.0f;
-		SetCountText ();
+		//SetCountText ();
 		winText.text = "";
 		jumpHeight = 5;
 		isFalling = false;
@@ -68,6 +72,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider info) {
+		Scene currentScene = SceneManager.GetActiveScene();
+		string sceneName = currentScene.name;
 
 		if (info.gameObject.CompareTag ("Pick Up")) {
 
@@ -75,7 +81,15 @@ public class PlayerController : MonoBehaviour {
 			Destroy(effect,3);
 			info.gameObject.SetActive (false); // Or Destroy(info.gameObject);
 			GameManager.currentScore += 1;
-			SetCountText();
+			//SetCountText();
+			if(sceneName == "Level_1")
+            {
+				Level1Controller.level1Point += 1;
+            }
+			if (sceneName == "Level_2")
+			{
+				Level2Controller.level2Point += 1;
+			}
 		}
 		if(info.tag == "web")
         {
@@ -84,16 +98,16 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-	void SetCountText() {
+	//void SetCountText() {
 
-		countText.text = "Count: " + GameManager.currentScore.ToString ();
-		if ((GameManager.currentScore >= pickupMax) && (!GameManager.endGame)) {
-			winText.text = "You Win!";
-			GameManager.endGame = true;
-			GameManager.currentLevel += 1;
-			gameManager.LoadNextLevel(GameManager.currentLevel,3.0f);
-		}
-	}
+	//	countText.text = "Count: " + GameManager.currentScore.ToString ();
+	//	if ((GameManager.currentScore >= pickupMax) && (!GameManager.endGame)) {
+	//		winText.text = "You Win!";
+	//		GameManager.endGame = true;
+	//		GameManager.currentLevel += 1;
+	//		gameManager.LoadNextLevel(GameManager.currentLevel,3.0f);
+	//	}
+	//}
 
 	void OnCollisionEnter(Collision collision) {
 
@@ -114,12 +128,6 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	// Esto es simplemente para retrasar un poco el seteo de isFalling en TRUE. Si no lo hicieramos, y lo pusieramos apenas presionamos espacio en el FixedUpdate,
-	// lo que pasaria es que por el orden de ejecucion del script (https://docs.unity3d.com/Manual/ExecutionOrder.html) luego del FixedUpdate se ejecutaria el
-	// OnCollisionStay para el mismo frame, y como isFalling esta en TRUE pensaria que ya toco el piso cuando en realidad recien comenzo el salto...
-	// De hecho, revisando el orden de ejecucion, por el simple hecho de poner el delay como una corutina, ya estamos retrasando el seteo para despues del
-	// CollisionStay (i.e.: si pusieramos 0 en el WaitForeSeconds tambien funcionaria como queremos).
-
 	IEnumerator DelayFall() {
 
 		yield return new WaitForSeconds(0.0f);
@@ -129,9 +137,6 @@ public class PlayerController : MonoBehaviour {
 	// A modo de prueba simplemente...
 	bool IsGrounded() {
 
-		// Esto lo que hace es lanzar un rayo desde cierta posicion, en cierta direccion y con cierta magnitud, y verificar si
-		// intersecta algun collider de la escena. En este caso estamos lanzando un rayo desde el centro de la bola, en direccion
-		// hacia abajo con una magnitud igual a la distancia inicial al suelo (mas un pequenio offset para estar seguros)
 		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
 	}
 }

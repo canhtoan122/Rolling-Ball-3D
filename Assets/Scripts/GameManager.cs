@@ -29,8 +29,9 @@ public class GameManager : MonoBehaviour {
 
 	void Start() {
 
+		Time.timeScale = 1f;
+
 		lifes = 3;
-		currentScore = 0;
 		endGame = false;
 
 		currentLevel = Application.loadedLevel;

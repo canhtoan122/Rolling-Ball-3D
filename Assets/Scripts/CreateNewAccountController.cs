@@ -15,7 +15,7 @@ public class CreateNewAccountController : MonoBehaviour
     public Text errorPassword;
     public Text confirmPassword;
 
-    private string username;
+    public static string username;
     private string password;
     private string confirmPasswordStr;
 
@@ -76,9 +76,32 @@ public class CreateNewAccountController : MonoBehaviour
                         
         }
     }
+    public void AddRuby()
+    {
+        String rubyStr = "INSERT INTO ruby(Username, Ruby) VALUES ('" + username + "', 0)";
+        cmd = new SqlCommand(rubyStr, connection);
+        try
+        {
+            connection.Open();
+            cmd.ExecuteNonQuery();
+
+        }
+        catch (Exception ex)
+        {
+            Debug.LogException(ex);
+        }
+        finally
+        {
+            if (connection.State == System.Data.ConnectionState.Open)
+            {
+                connection.Close();
+            }
+        }
+    }
     public void CreateAccountButton()
     {
         AddAccount();
+        AddRuby();
     }
     public void BackButton()
     {

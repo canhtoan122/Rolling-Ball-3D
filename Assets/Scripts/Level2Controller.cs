@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Level1Controller : MonoBehaviour
+public class Level2Controller : MonoBehaviour
 {
     public Text hpText;
     public Text scoreText;
@@ -14,17 +14,17 @@ public class Level1Controller : MonoBehaviour
     public GameObject pickUpEffect;
 
     private int pickupMax = 12;
-    public static int level1Point = 0;
+    public static int level2Point = 0;
     public void Update()
     {
         hpText.text = GameManager.lifes.ToString();
-        scoreText.text = level1Point.ToString();
+        scoreText.text = level2Point.ToString();
         CountPickUp();
     }
 
     public void CountPickUp()
     {
-        if(level1Point == pickupMax)
+        if (level2Point == pickupMax)
         {
             winPanel.SetActive(true);
         }
@@ -35,13 +35,13 @@ public class Level1Controller : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Pick Up"))
+        if (other.gameObject.CompareTag("Pick Up"))
         {
             GameObject effect = (GameObject)Instantiate(pickUpEffect, other.transform.position, other.transform.rotation);
             Destroy(effect, 3);
             other.gameObject.SetActive(false); // Or Destroy(info.gameObject);
             GameManager.currentScore += 1;
-            level1Point += 1;
+            level2Point += 1;
         }
     }
 
@@ -70,13 +70,13 @@ public class Level1Controller : MonoBehaviour
         Application.LoadLevel("Account");
         Time.timeScale = 1f;
     }
-    public void Level1TryAgain()
+    public void Level2TryAgain()
     {
-        Application.LoadLevel("Level_1");
+        Application.LoadLevel("Level_2");
         Time.timeScale = 1f;
     }
-    public void backtoMenu()
+    public void BackButton()
     {
-        Application.LoadLevel("Menu");
+        Application.LoadLevel("Level_1");
     }
 }
