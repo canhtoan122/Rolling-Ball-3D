@@ -45,7 +45,7 @@ public class EnemyModel : MonoBehaviour {
 		// choque en algunos casos (no es trigger), ya que si no estuviera se puede generar comportamientos extranios)
 		colliders.SetActive(false);
 
-		StartCoroutine (ComeAlive (5.0f));
+		//StartCoroutine (ComeAlive (5.0f));
 	}
 
 	// Esto es porque si no actualizamos la posicion con la que tenia antes de hacer la transicion de animacion la

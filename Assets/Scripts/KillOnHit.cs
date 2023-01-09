@@ -4,7 +4,7 @@ using System.Collections;
 public class KillOnHit : MonoBehaviour {
 
 	public GameManager gameManager;
-
+	// enermy kill player
 	void OnTriggerEnter(Collider colInfo) {
 
 		if (!GameManager.endGame) {

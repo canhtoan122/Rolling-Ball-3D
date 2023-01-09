@@ -40,8 +40,7 @@ public class Level1Controller : MonoBehaviour
             GameObject effect = (GameObject)Instantiate(pickUpEffect, other.transform.position, other.transform.rotation);
             Destroy(effect, 3);
             other.gameObject.SetActive(false); // Or Destroy(info.gameObject);
-            GameManager.currentScore += 1;
-            level1Point += 1;
+            level1Point += 3;
         }
     }
 
@@ -72,6 +71,8 @@ public class Level1Controller : MonoBehaviour
     }
     public void Level1TryAgain()
     {
+        level1Point = 0;
+        GameManager.currentScore = 0;
         Application.LoadLevel("Level_1");
         Time.timeScale = 1f;
     }
@@ -79,4 +80,9 @@ public class Level1Controller : MonoBehaviour
     {
         Application.LoadLevel("Menu");
     }
+    public void backtoSumary()
+    {
+        Application.LoadLevel("Summary");
+    }
 }
+

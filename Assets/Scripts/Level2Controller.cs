@@ -7,7 +7,6 @@ public class Level2Controller : MonoBehaviour
 {
     public Text hpText;
     public Text scoreText;
-
     public Button pauseButton;
     public GameObject pausePanel;
     public GameObject winPanel;
@@ -18,8 +17,9 @@ public class Level2Controller : MonoBehaviour
     public void Update()
     {
         hpText.text = GameManager.lifes.ToString();
-        scoreText.text = level2Point.ToString();
+        scoreText.text = GameManager.currentScore.ToString();
         CountPickUp();
+
     }
 
     public void CountPickUp()
@@ -40,7 +40,7 @@ public class Level2Controller : MonoBehaviour
             GameObject effect = (GameObject)Instantiate(pickUpEffect, other.transform.position, other.transform.rotation);
             Destroy(effect, 3);
             other.gameObject.SetActive(false); // Or Destroy(info.gameObject);
-            GameManager.currentScore += 1;
+            //GameManager.currentScore += 1;
             level2Point += 1;
         }
     }
@@ -48,7 +48,8 @@ public class Level2Controller : MonoBehaviour
     public void NextLevel()
     {
         Time.timeScale = 1f;
-        Application.LoadLevel("Level_2");
+        Application.LoadLevel("Summary");
+        winPanel.SetActive(false);
     }
     public void BackLevel()
     {
@@ -72,11 +73,13 @@ public class Level2Controller : MonoBehaviour
     }
     public void Level2TryAgain()
     {
+        level2Point = 0;
+        GameManager.currentScore = 0;
         Application.LoadLevel("Level_2");
         Time.timeScale = 1f;
     }
     public void BackButton()
     {
-        Application.LoadLevel("Level_1");
+        Application.LoadLevel("Summary");
     }
 }

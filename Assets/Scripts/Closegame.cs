@@ -8,6 +8,10 @@ public class Closegame : MonoBehaviour
     {
         if (other.tag == "web")
         {
+            //Level1Controller.level1Point = 0;
+            //Level2Controller.level2Point = 0;
+            //GameManager.currentScore = 0;
+
             Application.LoadLevel("Summary");
         }
     }

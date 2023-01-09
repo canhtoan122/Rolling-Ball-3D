@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 		speed = 10.0f;
 		//SetCountText ();
 		winText.text = "";
-		jumpHeight = 5;
+		jumpHeight = 8;
 		isFalling = false;
 		distToGround = GetComponent<Collider>().bounds.extents.y;
 	}
@@ -44,14 +44,15 @@ public class PlayerController : MonoBehaviour {
 		// Note: When applying movement calculations inside FixedUpdate, you do not need to multiply your values by
 		// Time.deltaTime. This is because FixedUpdate is called on a reliable timer, independent of the frame rate
 
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
+		float moveHorizontal = Input.GetAxis ("Horizontal");// left and right
+		float moveVertical = Input.GetAxis ("Vertical");// up and down
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
+
 		rb.AddForce (movement * speed);
 
-		// Hacemos que la bola pueda saltar
+		// We make the ball can jump
 		if (Input.GetKeyDown (KeyCode.Space) && (!GameManager.endGame)) {
 			Debug.Log ("Saltaaaa");
 			if (!isFalling)
@@ -63,12 +64,12 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		// A modo de prueba simplemente...
-		// Funciona perfecto...
-//		if (IsGrounded ())
-//			Debug.Log ("Toca el piso");
-//		else
-//			Debug.Log ("NO toca el piso");
+		// Just for testing.....
+		// 
+		//		if (IsGrounded ())
+		//			Debug.Log ("Toca el piso");
+		//		else
+		//			Debug.Log ("NO toca el piso");
 	}
 
 	void OnTriggerEnter(Collider info) {
@@ -117,7 +118,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	// Se ejecuta cuando el objeto esta colisionando con otro
+	// It is executed when the object is colliding with another
 	void OnCollisionStay() {
 
 		if (isFalling) {
@@ -127,14 +128,15 @@ public class PlayerController : MonoBehaviour {
 			isFalling = false;
 		}
 	}
-
+	// check variable is falling
 	IEnumerator DelayFall() {
 
 		yield return new WaitForSeconds(0.0f);
 		isFalling = true;
 	}
 
-	// A modo de prueba simplemente...
+	// Just as a test
+
 	bool IsGrounded() {
 
 		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);

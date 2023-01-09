@@ -25,13 +25,13 @@ public class DisplayScreenController : MonoBehaviour
         if(isCheckSkin1 == true)
         {
             skin.material = skin1;
-            Renderer renderer = player.GetComponent<Renderer>();
-            renderer.material = skin.material;
-            isCheckSkin1 = false;
+            Renderer renderer = player.GetComponent<Renderer>();// get component cua cai render
+            renderer.material = skin.material;// gan player material
+            isCheckSkin1 = false; // no using  that skill againn
         }
         else
         {
-            skin.material = defaultSkin;
+            skin.material = defaultSkin; // using defaust skin
             Renderer renderer = player.GetComponent<Renderer>();
             renderer.material = skin.material;
             isCheckSkin1 = true;
@@ -109,7 +109,7 @@ public class DisplayScreenController : MonoBehaviour
 
         connectionString = @"Data Source=ADMIN-PC;Initial Catalog=Account;Integrated Security=True";
         connection = new SqlConnection(connectionString);
-
+        //get user name of 
         string newUsername = LoginPageController.username;
         String checkRubyStr = "select * from ruby WHERE Username = ('" + newUsername + "');";
         cmd = new SqlCommand(checkRubyStr, connection);
@@ -120,10 +120,10 @@ public class DisplayScreenController : MonoBehaviour
         {
             while (reader.Read())
             {
-                ruby = Convert.ToString(reader["Ruby"]);
+                ruby = Convert.ToString(reader["Ruby"]); // Search Ruby column, Convert into string and add variable into ruby
             }
         }
-        connection.Close();
+        connection.Close();// after get ruby, it close
         rubyText.text = ruby;
         if(newUsername == null || ruby == "" || ruby == null)
         {

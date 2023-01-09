@@ -8,10 +8,6 @@ public class PlayerHealth : MonoBehaviour {
 	public Text gameoverText;
 	public GameObject gameoverPanel;
 
-	// Aca para ejecutar un metodo de otro script (2da respuesta): http://answers.unity3d.com/questions/1083124/two-stupid-questions-about-calling-a-method-from-a.html
-	// Lo use para ejecutar la corutina que reinicia el nivel luego de unos segundos (ResetGame()), tambien cuando se detecta que se gana el juego desde este script
-	// Luego lo cambie porque pase la corutina al modulo GameManager en vez de al script PlayerHealth, y agregue aca una referencia explicita al GameManager, pero antes
-	// esta variable era algo de tipo PlayerHealth y se instanciaba como gameObject.GetComponent<PlayerHealth>()
 	public GameManager gameManager;
 
 	//void Start() {
